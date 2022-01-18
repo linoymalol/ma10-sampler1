@@ -12,15 +12,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-public class CsvExtract {
-    Extract csv = new Extract() {
-        CsvReader csvReader = new CsvReader();
-        CsvParser csvParser = new CsvParser();
+public class CsvExtract implements Extract {
+    CsvReader csvReader = new CsvReader();
+    CsvParser csvParser = new CsvParser();
 
-        @Override
-        public List extract(String path) throws IOException {
-            return csvParser.fileToList(csvReader.read(path));
-        }
-    };
+    @Override
+    public List extract(String path) throws IOException {
+        return csvParser.fileToList(csvReader.read(path));
+    }
 }
 
