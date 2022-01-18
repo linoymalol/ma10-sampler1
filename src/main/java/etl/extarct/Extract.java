@@ -1,5 +1,8 @@
 package etl.extarct;
 
-public interface Extract extends Reader, Parser{
-    void extract(String path);
+import java.io.IOException;
+import java.util.List;
+
+public interface Extract {
+    List extract(String path) throws IOException;
 }
