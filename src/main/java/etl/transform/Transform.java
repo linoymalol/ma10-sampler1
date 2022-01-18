@@ -1,5 +1,7 @@
 package etl.transform;
 
-public interface Transform {
+import java.util.List;
 
+public interface Transform {
+    public List transform(List listOfObjects);
 }
