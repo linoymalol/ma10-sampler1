@@ -1,4 +1,4 @@
-package MadaReports;
+package madaReports;
 
 public class EtlMadaReports {
 }
