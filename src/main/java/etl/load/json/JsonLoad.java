@@ -2,18 +2,21 @@ package etl.load.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import etl.load.Load;
+import etl.load.ShareToFiles;
+import etl.transform.Transform;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 
-public class JsonLoad implements Load {
+public class JsonLoad implements Load{
 
     final int NUMBER_OF_RECORDS = 50000;
 
     public void load(String path, List listOfObjects) throws IOException {
-        int numberOfFiles = numberOfFiles(listOfObjects);
+        ShareToFiles shareToFiles = new ShareToFiles();
+        int numberOfFiles = shareToFiles.numberOfFiles(listOfObjects, NUMBER_OF_RECORDS);
         int counter = 0;
         int indexInList = 0;
         while (counter != numberOfFiles) {
@@ -26,21 +29,7 @@ public class JsonLoad implements Load {
             }
             indexInList = NUMBER_OF_RECORDS * (counter + 1);
             counter++;
-            path = newPath(path, counter);
+            path = shareToFiles.newPath(path, counter);
         }
-    }
-
-    public String newPath(String path, int numberOfFile) {
-        int index = path.indexOf('.');
-        String startString = path.substring(0, index - 1);
-        String endString = path.substring(index, path.length());
-        return startString + "" + numberOfFile + endString;
-    }
-
-    public int numberOfFiles(List listOfObjects) {
-        if (listOfObjects.size() % NUMBER_OF_RECORDS == 0) {
-            return listOfObjects.size() / NUMBER_OF_RECORDS;
-        }
-        return listOfObjects.size() / NUMBER_OF_RECORDS + 1;
     }
 }
