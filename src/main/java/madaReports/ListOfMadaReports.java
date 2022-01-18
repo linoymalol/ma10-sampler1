@@ -1,4 +1,4 @@
-package MadaReports;
+package madaReports;
 
 import org.apache.commons.csv.CSVRecord;
 
