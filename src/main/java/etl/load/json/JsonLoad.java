@@ -3,7 +3,8 @@ package etl.load.json;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import etl.load.Load;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -11,7 +12,7 @@ public class JsonLoad implements Load {
 
     final int NUMBER_OF_RECORDS = 50000;
 
-    public void objectToJson(String path, List listOfObjects) throws IOException {
+    public void load(String path, List listOfObjects) throws IOException {
         int numberOfFiles = numberOfFiles(listOfObjects);
         int counter = 0;
         int indexInList = 0;
